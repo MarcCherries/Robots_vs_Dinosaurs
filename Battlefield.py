@@ -10,7 +10,8 @@ class Battlefield:
         pass
 
     def display_welcome(self):
-        pass
+        print('Welcome to Robots Vs Dinosaurs!  Please wait while your fighters are spawned \n')
+       
 
     def battle(self):
         pass
