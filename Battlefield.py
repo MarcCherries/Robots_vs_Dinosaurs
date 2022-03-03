@@ -1,5 +1,5 @@
 
-from imaplib import ParseFlags
+import random
 from Dinosaur import Dinosaur
 from Fleet import Fleet
 from Herd import Herd
@@ -10,12 +10,14 @@ class Battlefield:
        self.name = "Field of Screams"
        self.herd = Herd()
        self.fleet = Fleet()
+       self.herd.create_herd()
+       self.fleet.create_fleet()
         
 
     def run_game(self):
-        Battlefield.display_welcome(self)
-        Battlefield.battle(self)
-        Battlefield.dino_turn(self)
+        self.display_welcome()
+        self.battle()
+        
        
         
 
@@ -24,14 +26,20 @@ class Battlefield:
        
 
     def battle(self):
-        pass
-        
+        h_or_t = random.randint(0,1)
+        if h_or_t == 0:
+            print('Heads! Robots go first! \n')
+            self.robo_turn()
+        else:
+            print ('Tails! Dinosaurs go first! \n')
+            self.dino_turn()
 
     
-    def dino_turn(self, dinosaur):
-        pass
+    def dino_turn(self):
+        self.herd.dinosaurs[0].attack(self.fleet.robots[0])
+        print(self.fleet.robots[0].health)
 
-    def robo_turn(self, robot):
+    def robo_turn(self):
         pass
 
     def show_dino_opponent_options(self):
