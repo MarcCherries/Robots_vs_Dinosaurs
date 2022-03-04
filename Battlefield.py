@@ -1,9 +1,7 @@
-
 import random
-from Dinosaur import Dinosaur
 from Fleet import Fleet
 from Herd import Herd
-from Robots import Robots
+
 
 class Battlefield:
     def __init__(self):
@@ -27,24 +25,50 @@ class Battlefield:
 
     def battle(self):
         h_or_t = random.randint(0,1)
-        while self.fleet.robots[0].health  > 0 and self.herd.dinosaurs[0].health > 0:
+        while self.fleet.robots[0].health > 0 and self.herd.dinosaurs[0].health > 0:  
             if h_or_t == 0:
-                print('Heads! Robots go first! \n')
                 self.robo_turn()
             else:
-                print ('Tails! Dinosaurs go first! \n')
-                self.dino_turn()
-        else:
+                  self.dino_turn()
+
+            if  h_or_t == 0:
+                h_or_t +=1 
+            else:
+                h_or_t -=1
+
+        else: 
             self.display_winners()
+
+     
     
     def dino_turn(self):
-        self.herd.dinosaurs[0].attack(self.fleet.robots[0])
-        print(self.fleet.robots[0].health)
+        user_choice = int(input(f'Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}'))
+        user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
+        
+        self.herd.dinosaurs[user_choice].attack(self.fleet.robots[user_choice_attack])
+        print (f'{self.herd.dinosaurs[user_choice].name} attacks {self.fleet.robots[user_choice_attack].name} and deals {self.herd.dinosaurs[user_choice].attack_power} worth of damage! \n')
+        print(f'{self.fleet.robots[user_choice_attack].name} health is now {self.fleet.robots[user_choice_attack].health}')
        
 
     def robo_turn(self):
-        self.fleet.robots[0].attack(self.herd.dinosaurs[0])
-        print(self.herd.dinosaurs[0].health)
+        user_choice_rob = int(input(f'Which Robot would you like to attack with?  Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name}, or (2) for {self.fleet.robots[2].name}'))
+        rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}'))
+        weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power}     (1) Flamethrower  {self.fleet.robots[1].attack_power}     (2) Bazooka {self.fleet.robots[2].attack_power}\n'))
+        if weap_sel == 0:
+            self.fleet.robots[user_choice_rob].weapon = 'Laser Gun'
+            self.fleet.robots[user_choice_rob].attack_power = 15
+        elif weap_sel == 1:
+            self.fleet.robots[user_choice_rob].weapon = 'Flamethrower'
+            self.fleet.robots[user_choice_rob].attack_power = 20
+        elif weap_sel == 2:
+            self.fleet.robots[user_choice_rob].weapon = 'Bazooka'
+            self.fleet.robots[user_choice_rob].attack_power = 25
+        else:
+            print('Thats is not a valid selection, please try again \n') 
+            
+        self.fleet.robots[user_choice_rob].attack(self.herd.dinosaurs[rob_user_choice_attack])
+        print(f'{self.fleet.robots[user_choice_rob].name} attacks {self.herd.dinosaurs[rob_user_choice_attack].name} with the {self.fleet.robots[user_choice_rob].weapon} dealing {self.fleet.robots[user_choice_rob].attack_power}! ')
+        print(self.herd.dinosaurs[rob_user_choice_attack].health)
        
     def show_dino_opponent_options(self):
         pass

@@ -6,9 +6,9 @@ class Fleet:
         self.robots = []
 
     def create_fleet (self):
-        robot01 = Robots('Max')
-        robot02 = Robots('C3P0')
-        robot03 = Robots('Hal')
+        robot01 = Robots('Max', 'Laser Gun', 15)
+        robot02 = Robots('C3P0', 'Flamethrower', 20)
+        robot03 = Robots('Hal', 'Bazooka', 25)
         self.robots.append(robot01)
         self.robots.append(robot02)
         self.robots.append(robot03)
