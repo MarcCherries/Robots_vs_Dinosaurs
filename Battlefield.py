@@ -21,7 +21,7 @@ class Battlefield:
 
     def display_welcome(self):
         print(f'Welcome to the {self.name}!  You are about to witness the battle of the century (or eon?), Robots vs. Dinosaurs!\n')
-        print('Here are the rules: there are no rules!  No, but seriously, there are several rules.')
+        print('Here are the rules: THERE ARE NO RULES!!!!  But seriously, pay attention because there are several very important rules.')
         print('Well, before our prehistoric friends go extinct (again!) lets get started!  A herd of dinosaurs and a fleet of robots are being assembled as we speak.')
         input('While were waiting on the robots to charge up, why dont we settle who goes first?  Press (enter) to flip a coin.  Heads for robots and, of course, tails for dinosaurs! \n')
        
@@ -46,7 +46,31 @@ class Battlefield:
              self.display_winners()
 
      
-    
+#doing this so that if a robot is attacked with more than their health they wont go negative which affects the overall bool checking for gameover might need to move it down
+
+    def dino_turn(self):
+        pass
+       
+
+
+        
+
+    def user_choose(self):   
+        user_choice1 = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
+
+        while "Sorry" in self.herd.dinosaurs[1].name and user_choice1 == 1:
+            print('please try again')
+            user_choice1 = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
+               
+        
+            continue
+            
+        
+        else:
+            print ('it worked')
+
+            return user_choice1
+            
     def dino_turn(self):
         if self.herd.dinosaurs[0].health <= 0:
            self.herd.dinosaurs[0].health = 0
@@ -58,29 +82,14 @@ class Battlefield:
             self.herd.dinosaurs[2].health = 0
             self.herd.dinosaurs[2].name = (f'Sorry, Ptera is dead!')
 #but these go to eleven!
-        if self.herd.dinosaurs[0].energy <= 11:
+        if self.herd.dinosaurs[0].energy < 11:
            self.herd.dinosaurs[0].name = (f'Barney is low on energy and cannot attack!!')
-        elif self.herd.dinosaurs[1].energy <= 11:
+        elif self.herd.dinosaurs[1].energy < 11:
             self.herd.dinosaurs[1].name = (f'Rex is low on energy and cannot atttack!!')
-        elif self.herd.dinosaurs[2].energy <= 11:
+        elif self.herd.dinosaurs[2].energy < 11:
             self.herd.dinosaurs[2].name = (f'Ptera is low on energy and cannot attack!!')
 
-
-        
-        user_choice = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
-
-        while "Sorry" in self.herd.dinosaurs[1].name and user_choice == 1:
-            print('please try again')
-            user_choice = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
-               
-        
-            continue
-            
-        
-        else:
-            pass
-            
-        user_choice = 2
+        user_choice = self.user_choose()       
         user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
         tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
         while True:
@@ -111,7 +120,6 @@ class Battlefield:
         print(f'{self.herd.dinosaurs[user_choice].name} energy is now {self.herd.dinosaurs[user_choice].energy}')
 
     def robo_turn(self):
-#doing this so that if a robot is attacked with more than their health they wont go negative which affects the overall bool checking for gameover might need to move it down
         if self.fleet.robots[0].health <= 0:
            self.fleet.robots[0].health = 0
            self.fleet.robots[0].name = (f'Sorry, Max is powered off!')
@@ -122,14 +130,11 @@ class Battlefield:
             self.fleet.robots[2].health = 0
             self.fleet.robots[2].name = (f'Sorry, HAL is powered off!')
 
-        if self.fleet.robots[0].health <= 0:
-           self.fleet.robots[0].health = 0
+        if self.fleet.robots[0].power_level < 11:
            self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
-        elif self.fleet.robots[1].health <= 0:
-            self.fleet.robots[1].health = 0
+        elif self.fleet.robots[1].power_level < 11:
             self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
-        elif self.fleet.robots[2].health <= 0:
-            self.fleet.robots[2].health = 0
+        elif self.fleet.robots[2].power_level < 11:
             self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
 
         
