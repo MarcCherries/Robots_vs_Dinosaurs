@@ -79,7 +79,7 @@ class Battlefield:
         
         user_choice_rob = int(input(f'Which Robot would you like to attack with?  Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name}, or (2) for {self.fleet.robots[2].name}\n'))
         rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
-        weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power}     (1) Flamethrower  {self.fleet.robots[1].attack_power}     (2) Bazooka {self.fleet.robots[2].attack_power}\n'))
+        weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power}(damage) 9 (accuracy)     (1) Flamethrower  {self.fleet.robots[1].attack_power}(damage) 8 (accuracy)     (2) Bazooka {self.fleet.robots[2].attack_power}(damage) 7 (accuracy)\n'))
         while True:
             if weap_sel == 0:
                 self.fleet.robots[user_choice_rob].weapon = 'Laser Gun'
