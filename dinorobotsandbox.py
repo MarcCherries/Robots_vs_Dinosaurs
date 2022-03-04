@@ -32,7 +32,7 @@ class Battlefield:
             print ('It is heads! Robots, start your engines. ')
         else:
             print('It is tails! Dinosaurs are roaring to go! ')
-        while (self.fleet.robots[0].health + self.fleet.robots[1].health + self.fleet.robots[2].health > 0) and (self.herd.dinosaurs[0].health + self.herd.dinosaurs[1].health + self.herd.dinosaurs[2].health > 0):  
+        while (sum(self.fleet.robots[::].health) and (self.herd.dinosaurs[::].health > 0)):  
             
             if h_or_t == 0:
                h_or_t +=1  
@@ -42,45 +42,25 @@ class Battlefield:
                 self.dino_turn()
 
             
+               
+   
+               
+
         else: 
-             self.display_winners()
+            self.display_winners()
 
      
     
     def dino_turn(self):
         if self.herd.dinosaurs[0].health <= 0:
            self.herd.dinosaurs[0].health = 0
-           self.herd.dinosaurs[0].name = (f'Sorry, Barney is dead!')
         elif self.herd.dinosaurs[1].health <= 0:
             self.herd.dinosaurs[1].health = 0
-            self.herd.dinosaurs[1].name = (f'Sorry, Rex is dead!')
         elif self.herd.dinosaurs[2].health <= 0:
             self.herd.dinosaurs[2].health = 0
-            self.herd.dinosaurs[2].name = (f'Sorry, Ptera is dead!')
-#but these go to eleven!
-        if self.herd.dinosaurs[0].energy <= 11:
-           self.herd.dinosaurs[0].name = (f'Barney is low on energy and cannot attack!!')
-        elif self.herd.dinosaurs[1].energy <= 11:
-            self.herd.dinosaurs[1].name = (f'Rex is low on energy and cannot atttack!!')
-        elif self.herd.dinosaurs[2].energy <= 11:
-            self.herd.dinosaurs[2].name = (f'Ptera is low on energy and cannot attack!!')
 
 
-        
-        user_choice = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
-
-        while "Sorry" in self.herd.dinosaurs[1].name and user_choice == 1:
-            print('please try again')
-            user_choice = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
-               
-        
-            continue
-            
-        
-        else:
-            pass
-            
-        user_choice = 2
+        user_choice = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
         user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
         tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
         while True:
@@ -114,25 +94,10 @@ class Battlefield:
 #doing this so that if a robot is attacked with more than their health they wont go negative which affects the overall bool checking for gameover might need to move it down
         if self.fleet.robots[0].health <= 0:
            self.fleet.robots[0].health = 0
-           self.fleet.robots[0].name = (f'Sorry, Max is powered off!')
         elif self.fleet.robots[1].health <= 0:
             self.fleet.robots[1].health = 0
-            self.fleet.robots[1].name = (f'Sorry, C3PO is powered off!')
         elif self.fleet.robots[2].health <= 0:
             self.fleet.robots[2].health = 0
-            self.fleet.robots[2].name = (f'Sorry, HAL is powered off!')
-
-        if self.fleet.robots[0].health <= 0:
-           self.fleet.robots[0].health = 0
-           self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
-        elif self.fleet.robots[1].health <= 0:
-            self.fleet.robots[1].health = 0
-            self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
-        elif self.fleet.robots[2].health <= 0:
-            self.fleet.robots[2].health = 0
-            self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
-
-        
         
         user_choice_rob = int(input(f'Robots turn! Which Robot would you like to attack with?  Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name}, or (2) for {self.fleet.robots[2].name}\n'))
         rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
@@ -166,7 +131,7 @@ class Battlefield:
                 print(f'{self.fleet.robots[user_choice_rob].name} attacks {self.herd.dinosaurs[rob_user_choice_attack].name} with the {self.fleet.robots[user_choice_rob].weapon} dealing {self.fleet.robots[user_choice_rob].attack_power} damage!\n')
                 print(f'{self.herd.dinosaurs[rob_user_choice_attack].name} health is now {self.herd.dinosaurs[rob_user_choice_attack].health}')
                 print(f'{self.fleet.robots[user_choice_rob].name} power level is now {self.fleet.robots[user_choice_rob].power_level}')
-               
+                print(status)
             else:
                 print('Oh no! A miss! No damage done and 10 power lost!')
                 self.fleet.robots[user_choice_rob].power_level -= 10
