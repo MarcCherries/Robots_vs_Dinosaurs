@@ -105,8 +105,25 @@ class Battlefield:
               
           
 
-       
-        user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
+        user_choice6 = 'none'
+        while user_choice6 != 'end':
+            user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
+            if 'Sorry' in self.fleet.robots[0].name and user_choice_attack == 0:
+                print('That Robot is powered off! Have mercy! Please select again')
+                user_choice6 = 'none'
+
+            elif 'Sorry' in self.fleet.robots[1].name and user_choice_attack == 1:
+                 print('That Robot is powered off! Have mercy! Please select again')
+                 user_choice6 = 'none'
+
+            elif 'Sorry' in self.fleet.robots[2].name and user_choice_attack == 2:
+                print('That Robot is powered off! Have mercy! Please select again')
+                user_choice6 = 'none'
+
+            else:
+                user_choice6 = 'end'
+                break
+            
         tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
         while True:
             if tuple_sel == 0:
@@ -186,8 +203,27 @@ class Battlefield:
 
             else: 
                 user_choice4 = 'end'
+                break
         
-        rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
+        user_choice5 = 'none'
+        while user_choice5 != "end":
+            rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
+            if 'Sorry' in self.herd.dinosaurs[0].name and rob_user_choice_attack == 0:
+                print('Sorry, that dinosaur is dead! Do not beat a dead dinosaur! Please select again. \n')
+                user_choice5 = 'none'
+            
+            elif 'Sorry' in self.herd.dinosaurs[1].name and rob_user_choice_attack == 1:
+                 print ('That dinosaur is dead! Do not beat a dead dinosaur! Please select again. \n')
+                 user_choice5 = 'none'
+                 
+            elif 'Sorry' in self.herd.dinosaurs[2].name and rob_user_choice_attack == 2:
+                 print('That dinosaur is dead! Do not beat a dead dinosaur! Please select again \n')
+                 user_choice5 = 'none'
+
+            else:
+                user_choice5 = 'end'
+                pass
+        
         weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power} (damage)   9 (accuracy)     (1) Flamethrower  {self.fleet.robots[1].attack_power} (damage)   8 (accuracy)     (2) Bazooka {self.fleet.robots[2].attack_power} (damage)   7 (accuracy)\n'))
         while True:
             if weap_sel == 0:
