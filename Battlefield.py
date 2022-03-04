@@ -62,7 +62,29 @@ class Battlefield:
 
         user_choice = int(input(f'Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
         user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
-        
+        tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
+        while True:
+            if tuple_sel == 0:
+                self.herd.dinosaurs[user_choice].move = 'Bull Rush'
+                self.fleet.robots[user_choice].attack_power = 15
+                self.herd.dinosaurs[user_choice].accuracy = 9
+                break
+            elif tuple_sel == 1:
+                self.fleet.robots[user_choice].move = 'Chomp Stomp'
+                self.fleet.robots[user_choice].attack_power = 20
+                self.fleet.robots[user_choice].accuracy = 8
+                break
+            elif tuple_sel == 2:
+                self.fleet.robots[user_choice].move = 'Pteradactyl Swoop'
+                self.fleet.robots[user_choice].attack_power = 25
+                self.fleet.robots[user_choice].accuracy = 7
+                break
+            else:
+                print('Thats is not a valid selection, please try again \n')
+                tuple_sel = int (input(f'Which special attack move would you like to use?'  ))
+ 
+                continue
+
         self.herd.dinosaurs[user_choice].attack(self.fleet.robots[user_choice_attack])
         print (f'{self.herd.dinosaurs[user_choice].name} attacks {self.fleet.robots[user_choice_attack].name} and deals {self.herd.dinosaurs[user_choice].attack_power} worth of damage! \n')
         print(f'{self.fleet.robots[user_choice_attack].name} health is now {self.fleet.robots[user_choice_attack].health}')
@@ -79,7 +101,7 @@ class Battlefield:
         
         user_choice_rob = int(input(f'Which Robot would you like to attack with?  Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name}, or (2) for {self.fleet.robots[2].name}\n'))
         rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
-        weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power}(damage) 9 (accuracy)     (1) Flamethrower  {self.fleet.robots[1].attack_power}(damage) 8 (accuracy)     (2) Bazooka {self.fleet.robots[2].attack_power}(damage) 7 (accuracy)\n'))
+        weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power} (damage)   9 (accuracy)     (1) Flamethrower  {self.fleet.robots[1].attack_power} (damage)   8 (accuracy)     (2) Bazooka {self.fleet.robots[2].attack_power} (damage)   7 (accuracy)\n'))
         while True:
             if weap_sel == 0:
                 self.fleet.robots[user_choice_rob].weapon = 'Laser Gun'
@@ -109,6 +131,7 @@ class Battlefield:
                 print(f'{self.fleet.robots[user_choice_rob].name} attacks {self.herd.dinosaurs[rob_user_choice_attack].name} with the {self.fleet.robots[user_choice_rob].weapon} dealing {self.fleet.robots[user_choice_rob].attack_power} damage!\n')
                 print(f'{self.herd.dinosaurs[rob_user_choice_attack].name} health is now {self.herd.dinosaurs[rob_user_choice_attack].health}')
                 print(f'{self.fleet.robots[user_choice_rob].name} power level is now {self.fleet.robots[user_choice_rob].power_level}')
+                print(status)
             else:
                 print('Oh no! A miss! No damage done and 10 power lost!')
                 self.fleet.robots[user_choice_rob].power_level -= 10
