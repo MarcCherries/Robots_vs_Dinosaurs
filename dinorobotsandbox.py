@@ -176,3 +176,37 @@ class Battlefield:
             print('Robots are the victors! Resistance is futile! ')
             print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!! 100101001101001001110101001010010010010100101101010!!!!')
             print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!! 100101001101001001110101001010010010010100101101010!!!!')
+
+   
+   
+   
+    def user_choose(self):   
+        user_choice1 = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
+
+       
+        if user_choice1 == 1:
+            while "Sorry" in self.herd.dinosaurs[1].name and user_choice1 == 1:
+                print('please try again')
+                user_choice1 = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
+               
+        
+                continue
+            
+            else:
+                pass
+        elif user_choice1 == 2:
+            while "Sorry" in self.herd.dinosaurs[2].name and user_choice1 == 2:
+                print('please try again')
+                user_choice1 = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
+               
+        elif user_choice1 == 0:
+            while "Sorry" in self.herd.dinosaurs[2].name and user_choice1 == 2:
+                print('please try again')
+                user_choice1 = int(input(f'Dinosaurs turn! Which Dinosaur would you like to attack with?  Type (0) for {self.herd.dinosaurs[0].name}, (1))for {self.herd.dinosaurs[1].name}, or (2) for {self.herd.dinosaurs[2].name}\n'))
+               
+                continue
+        else:
+
+            return user_choice1
+            
+
