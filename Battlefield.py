@@ -27,21 +27,25 @@ class Battlefield:
 
     def battle(self):
         h_or_t = random.randint(0,1)
-        if h_or_t == 0:
-            print('Heads! Robots go first! \n')
-            self.robo_turn()
+        while self.fleet.robots[0].health  > 0 and self.herd.dinosaurs[0].health > 0:
+            if h_or_t == 0:
+                print('Heads! Robots go first! \n')
+                self.robo_turn()
+            else:
+                print ('Tails! Dinosaurs go first! \n')
+                self.dino_turn()
         else:
-            print ('Tails! Dinosaurs go first! \n')
-            self.dino_turn()
-
+            self.display_winners()
     
     def dino_turn(self):
         self.herd.dinosaurs[0].attack(self.fleet.robots[0])
         print(self.fleet.robots[0].health)
+       
 
     def robo_turn(self):
-        pass
-
+        self.fleet.robots[0].attack(self.herd.dinosaurs[0])
+        print(self.herd.dinosaurs[0].health)
+       
     def show_dino_opponent_options(self):
         pass
 
@@ -49,4 +53,4 @@ class Battlefield:
         pass
 
     def display_winners(self):
-        pass
+        print ('Winners!')
