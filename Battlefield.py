@@ -23,63 +23,59 @@ class Battlefield:
         print(f'Welcome to the {self.name}!  You are about to witness the battle of the century (or eon?), Robots vs. Dinosaurs!\n')
         print('Here are the rules: THERE ARE NO RULES!!!!  But seriously, pay attention because there are several very important rules.')
         print('Well, before our prehistoric friends go extinct (again!) lets get started!  A herd of dinosaurs and a fleet of robots are being assembled as we speak.')
-        input('While were waiting on the robots to charge up, why dont we settle who goes first?  Press (enter) to flip a coin.  Heads for robots and, of course, tails for dinosaurs! \n')
+        input('While we are waiting on the robots to charge up, why dont we settle who goes first?  Press (enter) to flip a coin.  Heads for robots and, of course, tails for dinosaurs! \n')
        
 
     def battle(self):
-        h_or_t = random.randint(0,1)
-        if h_or_t == 0:
-            print ('It is heads! Robots, start your engines. ')
+        heads_or_tails = random.randint(0,1)
+        if heads_or_tails == 0:
+            print ('It is heads! Robots, start your processors. ')
         else:
             print('It is tails! Dinosaurs are roaring to go! ')
         while (self.fleet.robots[0].health + self.fleet.robots[1].health + self.fleet.robots[2].health > 0) and (self.herd.dinosaurs[0].health + self.herd.dinosaurs[1].health + self.herd.dinosaurs[2].health > 0):  
-            
-            if h_or_t == 0:
-               h_or_t +=1  
-               self.robo_turn()
+            if (self.fleet.robots[0].power_level < 11 or self.fleet.robots[0].health <= 0) and (self.fleet.robots[1].health <=0 or self.fleet.robots[1].power_level < 11 ) and (self.fleet.robots[2].health <= 0 or self.fleet.robots[2].power_level < 11):
+                print('No players left to use! Robots forfeit!')
+                break
+                
+            elif (self.herd.dinosaurs[0].energy < 11 or self.herd.dinosaurs[0].health <= 0) and (self.herd.dinosaurs[1].health <= 0 or self.herd.dinosaurs[1].energy < 11 ) and (self.herd.dinosaurs[2].health <= 0 or self.herd.dinosaurs[2].energy < 11):
+                print ('No players left to use! Dinosaurs forfeit!')
+                break
+
             else:
-                h_or_t -=1
-                self.dino_turn()
+                pass
+                
+                if heads_or_tails == 0:
+                    heads_or_tails +=1  
+                    self.robo_turn()
+                else:
+                    heads_or_tails -=1
+                    self.dino_turn()
 
-            
         else: 
-             self.display_winners()
-
-     
+            self.display_winners()
 #doing this so that if a robot is attacked with more than their health they wont go negative which affects the overall bool checking for gameover might need to move it down
-
     def dino_turn(self):
- 
+        if self.herd.dinosaurs[0].energy < 11:
+          self.herd.dinosaurs[0].name = (f'Barney is low on energy and cannot attack!!')
         
-        
-       
- #       if self.herd.dinosaurs[0].energy < 11:
-  #         self.herd.dinosaurs[0].name = (f'Barney is low on energy and cannot attack!!')
-   #     elif self.herd.dinosaurs[1].energy < 11:
-    #        self.herd.dinosaurs[1].name = (f'Rex is low on energy and cannot atttack!!')
-     #   elif self.herd.dinosaurs[2].energy < 11:
-      #      self.herd.dinosaurs[2].name = (f'Ptera is low on energy and cannot attack!!')
-#but these go to eleven!
+        if self.herd.dinosaurs[1].energy < 11:
+            self.herd.dinosaurs[1].name = (f'Rex is low on energy and cannot atttack!!')
+
+        if self.herd.dinosaurs[2].energy < 11:            
+          self.herd.dinosaurs[2].name = (f'Ptera is low on energy and cannot attack!!')
+
         if self.herd.dinosaurs[0].health <= 0:
            self.herd.dinosaurs[0].health = 0
            self.herd.dinosaurs[0].name = (f'Sorry, Barney is dead!')
-        
-        else: pass
         
         if self.herd.dinosaurs[1].health <= 0:
             self.herd.dinosaurs[1].health = 0
             self.herd.dinosaurs[1].name = (f'Sorry, Rex is dead!')
         
-        else: pass
-        
         if  self.herd.dinosaurs[2].health <= 0:
             self.herd.dinosaurs[2].health = 0
             self.herd.dinosaurs[2].name = (f'Sorry, Ptera is dead!')
 
-        else: pass
-
-        
-       
         user_choice3 = 'none'
         while user_choice3 != 'end':
             user_choice2 = int(input(f'Which Dinosaur would you like to attack with? for {self.herd.dinosaurs[0]. name} type (0), for {self.herd.dinosaurs[1]. name} type (1) or for {self.herd.dinosaurs[2].name} type (2) \n'))
@@ -87,24 +83,30 @@ class Battlefield:
                 print ('That dinosaur is dead! please select again \n')
                 user_choice3 == 'none'
             
-                continue
+            elif  'low' in self.herd.dinosaurs[1].name and user_choice2 == 1:
+                  print ('That dinosaur is low on energy! please select again \n')
+                  user_choice3 == 'none'
+            
             
             elif 'Sorry' in self.herd.dinosaurs[1].name and user_choice2 == 1:
                   print ('That dinosaur is dead! please select again \n')
+                  user_choice3 == 'none'
+
+            elif 'low' in self.herd.dinosaurs[1].name and user_choice2 == 1:
+                  print ('That dinosaur is low on energy! please select again \n')
                   user_choice3 == 'none'
 
             elif 'Sorry' in self.herd.dinosaurs[2].name and user_choice2 == 2:
                   print ('That dinosaur is dead! please select again \n')
                   user_choice3 == 'none'
 
+            elif 'low' in self.herd.dinosaurs[2].name and user_choice2 == 2:
+                  print ('That dinosaur is low on energy! please select again \n')
+                  user_choice3 == 'none'
+
             else: 
                 user_choice3 = 'end'
                 
-        
-        
-              
-          
-
         user_choice6 = 'none'
         while user_choice6 != 'end':
             user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
@@ -123,7 +125,7 @@ class Battlefield:
             else:
                 user_choice6 = 'end'
                 break
-            
+
         tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
         while True:
             if tuple_sel == 0:
@@ -152,58 +154,58 @@ class Battlefield:
         print(f'{self.fleet.robots[user_choice_attack].name} health is now {self.fleet.robots[user_choice_attack].health}')
         print(f'{self.herd.dinosaurs[user_choice2].name} energy is now {self.herd.dinosaurs[user_choice2].energy}')
 
-   
-       
-
-
-        
-
-
     def robo_turn(self):
         if self.fleet.robots[0].health <= 0:
            self.fleet.robots[0].health = 0
            self.fleet.robots[0].name = (f'Sorry, Max is powered off!')
-        else: pass
-        
+      
         if  self.fleet.robots[1].health <= 0:
             self.fleet.robots[1].health = 0
             self.fleet.robots[1].name = (f'Sorry, C3PO is powered off!')
 
-        else: pass
-        
         if  self.fleet.robots[2].health <= 0:
             self.fleet.robots[2].health = 0
             self.fleet.robots[2].name = (f'Sorry, HAL is powered off!')
 
-        else: pass
-
-  #      if self.fleet.robots[0].power_level < 11:
-   #        self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
-    #    elif self.fleet.robots[1].power_level < 11:
-     #       self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
-      #  elif self.fleet.robots[2].power_level < 11:
-       #     self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
+        if self.fleet.robots[0].power_level < 11:
+           self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
+        
+        if self.fleet.robots[1].power_level < 11:
+            self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
+        
+        if self.fleet.robots[2].power_level < 11:
+            self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
 
         user_choice4 = 'none'
         while user_choice4 != 'end':
-            user_choice2 = int(input(f'Which Robot would you like to attack with? for {self.fleet.robots[0]. name} type (0), for {self.fleet.robots[1]. name} type (1) or for {self.fleet.robots[2].name} type (2) \n'))
+            user_choice2 = int(input(f'Which Robot would you like to attack with? for {self.fleet.robots[0].name} type (0), for {self.fleet.robots[1]. name} type (1) or for {self.fleet.robots[2].name} type (2) \n'))
             if 'Sorry' in self.fleet.robots[0].name and user_choice2 == 0:
                 print ('That robot is powered off! please select again \n')
                 user_choice4 == 'none'
             
-                continue
+            elif 'low' in self.fleet.robots[0].name and user_choice2 == 0:
+                  print ('That robot is low on power! please select again \n')
+                  user_choice4 == 'none'    
             
             elif 'Sorry' in self.fleet.robots[1].name and user_choice2 == 1:
                   print ('That robot is powered off! please select again \n')
+                  user_choice4 == 'none'
+
+            elif 'low' in self.fleet.robots[1].name and user_choice2 == 1:
+                  print ('That robot is low on power! please select again \n')
                   user_choice4 == 'none'
 
             elif 'Sorry' in self.fleet.robots[2].name and user_choice2 == 2:
                   print ('That robot is powered off! please select again \n')
                   user_choice4 == 'none'
 
+            elif 'low' in self.fleet.robots[2].name and user_choice2 == 2:
+                  print ('That robot is powered off! please select again \n')
+                  user_choice4 == 'none'
+
             else: 
                 user_choice4 = 'end'
-                break
+                
         
         user_choice5 = 'none'
         while user_choice5 != "end":
@@ -222,7 +224,7 @@ class Battlefield:
 
             else:
                 user_choice5 = 'end'
-                pass
+             
         
         weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power} (damage)   9 (accuracy)     (1) Flamethrower  {self.fleet.robots[1].attack_power} (damage)   8 (accuracy)     (2) Bazooka {self.fleet.robots[2].attack_power} (damage)   7 (accuracy)\n'))
         while True:
@@ -258,6 +260,8 @@ class Battlefield:
             else:
                 print('Oh no! A miss! No damage done and 10 power lost!')
                 self.fleet.robots[user_choice2].power_level -= 10
+                print(f'{self.fleet.robots[user_choice2].name} power level is now {self.fleet.robots[user_choice2].power_level}')
+                print (f'{self.herd.dinosaurs[rob_user_choice_attack].name} health remains at {self.herd.dinosaurs[rob_user_choice_attack].health}')
         elif self.fleet.robots[user_choice2].accuracy == 8:
             chances = random.randint(0,9)
             if chances <= 7:
@@ -268,6 +272,9 @@ class Battlefield:
             else:
                 print('Oh no! A miss! No damage done and 10 power lost!')
                 self.fleet.robots[user_choice2].power_level -= 10
+                print(f'{self.fleet.robots[user_choice2].name} power level is now {self.fleet.robots[user_choice2].power_level}')
+                print (f'{self.herd.dinosaurs[rob_user_choice_attack].name} health remains at {self.herd.dinosaurs[rob_user_choice_attack].health}')
+      
         elif self.fleet.robots[user_choice2].accuracy == 7:
             chances = random.randint(0,9)
             if chances <= 6:
@@ -278,11 +285,9 @@ class Battlefield:
             else:
                 print('Oh no! A miss! No damage done and 10 power lost!')
                 self.fleet.robots[user_choice2].power_level -= 10
-
-
-
-
-    
+                print(f'{self.fleet.robots[user_choice2].name} power level is now {self.fleet.robots[user_choice2].power_level}')
+                print (f'{self.herd.dinosaurs[rob_user_choice_attack].name} health remains at {self.herd.dinosaurs[rob_user_choice_attack].health}')
+      
     def show_dino_opponent_options(self):
         pass
 
