@@ -11,5 +11,5 @@ class Robots:
     
     def attack(self, dinosaur):
         dinosaur.health -= self.attack_power
-        self.power_level -= 20
+        self.power_level -= 15
 
