@@ -76,78 +76,87 @@ class Battlefield:
             self.herd.dinosaurs[2].health = 0
             self.herd.dinosaurs[2].name = (f'Sorry, Ptera is dead!')
 
-        user_choice3 = 'none'
-        while user_choice3 != 'end':
-            user_choice2 = int(input(f'Which Dinosaur would you like to attack with? for {self.herd.dinosaurs[0]. name} type (0), for {self.herd.dinosaurs[1]. name} type (1) or for {self.herd.dinosaurs[2].name} type (2) \n'))
+        while True:   
+            try:
+                user_choice2 = int(input(f'Which Dinosaur would you like to attack with? for {self.herd.dinosaurs[0]. name} type (0), for {self.herd.dinosaurs[1]. name} type (1) or for {self.herd.dinosaurs[2].name} type (2) \n'))
+            except ValueError:
+                print('invalid input')   
+                continue
+            
             if 'Sorry' in self.herd.dinosaurs[0].name and user_choice2 == 0:
                 print ('That dinosaur is dead! please select again \n')
-                user_choice3 == 'none'
-            
+                continue
+                
             elif  'low' in self.herd.dinosaurs[1].name and user_choice2 == 1:
-                  print ('That dinosaur is low on energy! please select again \n')
-                  user_choice3 == 'none'
-            
-            
+                print ('That dinosaur is low on energy! please select again \n')
+                continue
+                
+                
             elif 'Sorry' in self.herd.dinosaurs[1].name and user_choice2 == 1:
-                  print ('That dinosaur is dead! please select again \n')
-                  user_choice3 == 'none'
+                print ('That dinosaur is dead! please select again \n')
+                continue
 
             elif 'low' in self.herd.dinosaurs[1].name and user_choice2 == 1:
-                  print ('That dinosaur is low on energy! please select again \n')
-                  user_choice3 == 'none'
+                print ('That dinosaur is low on energy! please select again \n')
+                continue
 
             elif 'Sorry' in self.herd.dinosaurs[2].name and user_choice2 == 2:
-                  print ('That dinosaur is dead! please select again \n')
-                  user_choice3 == 'none'
+                print ('That dinosaur is dead! please select again \n')
+                continue
 
             elif 'low' in self.herd.dinosaurs[2].name and user_choice2 == 2:
-                  print ('That dinosaur is low on energy! please select again \n')
-                  user_choice3 == 'none'
+                print ('That dinosaur is low on energy! please select again \n')
+                continue
 
             else: 
-                user_choice3 = 'end'
+                break
                 
-        user_choice6 = 'none'
-        while user_choice6 != 'end':
-            user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
+      
+        while True:
+                
+            try:
+                user_choice_attack = int(input(f'Which Robot would you like to attack? Type (0) for {self.fleet.robots[0].name}, (1) for {self.fleet.robots[1].name} or (2) for {self.fleet.robots[2].name}'))
+            except ValueError:
+                print('invalid selection')
+                continue
+        
             if 'Sorry' in self.fleet.robots[0].name and user_choice_attack == 0:
-                print('That Robot is powered off! Have mercy! Please select again')
-                user_choice6 = 'none'
+                    print('That Robot is powered off! Have mercy! Please select again')
+                    continue  
 
             elif 'Sorry' in self.fleet.robots[1].name and user_choice_attack == 1:
-                 print('That Robot is powered off! Have mercy! Please select again')
-                 user_choice6 = 'none'
+                    print('That Robot is powered off! Have mercy! Please select again')
+                    continue
 
             elif 'Sorry' in self.fleet.robots[2].name and user_choice_attack == 2:
-                print('That Robot is powered off! Have mercy! Please select again')
-                user_choice6 = 'none'
+                    print('That Robot is powered off! Have mercy! Please select again')
+                    continue
 
             else:
-                user_choice6 = 'end'
                 break
 
         tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
         while True:
-            if tuple_sel == 0:
-                self.herd.dinosaurs[user_choice2].move = 'Bull Rush'
-                self.fleet.robots[user_choice2].attack_power = 15
-                self.herd.dinosaurs[user_choice2].accuracy = 9
-                break
-            elif tuple_sel == 1:
-                self.fleet.robots[user_choice2].move = 'Chomp Stomp'
-                self.fleet.robots[user_choice2].attack_power = 20
-                self.fleet.robots[user_choice2].accuracy = 8
-                break
-            elif tuple_sel == 2:
-                self.fleet.robots[user_choice2].move = 'Pteradactyl Swoop'
-                self.fleet.robots[user_choice2].attack_power = 25
-                self.fleet.robots[user_choice2].accuracy = 7
-                break
-            else:
-                print('Thats is not a valid selection, please try again \n')
-                tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
- 
-                continue
+                if tuple_sel == 0:
+                    self.herd.dinosaurs[user_choice2].move = 'Bull Rush'
+                    self.fleet.robots[user_choice2].attack_power = 15
+                    self.herd.dinosaurs[user_choice2].accuracy = 9
+                    break
+                elif tuple_sel == 1:
+                    self.fleet.robots[user_choice2].move = 'Chomp Stomp'
+                    self.fleet.robots[user_choice2].attack_power = 20
+                    self.fleet.robots[user_choice2].accuracy = 8
+                    break
+                elif tuple_sel == 2:
+                    self.fleet.robots[user_choice2].move = 'Pteradactyl Swoop'
+                    self.fleet.robots[user_choice2].attack_power = 25
+                    self.fleet.robots[user_choice2].accuracy = 7
+                    break
+                else:
+                    print('Thats is not a valid selection, please try again \n')
+                    tuple_sel = int(input(f'Which special attack move would you like to use?  Type (0) for {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   90% accuracy, type (1) for  {self.herd.dinosaurs[1].move} {self.herd.dinosaurs[1].attack_power} (damage)   80%  (accuracy), or type (2) for  {self.herd.dinosaurs[0].move} {self.herd.dinosaurs[0].attack_power} (damage)   70%  (accuracy)   ') ) 
+    
+                    continue
 
         self.herd.dinosaurs[user_choice2].attack(self.fleet.robots[user_choice_attack])
         print (f'{self.herd.dinosaurs[user_choice2].name} attacks {self.fleet.robots[user_choice_attack].name} and deals {self.herd.dinosaurs[user_choice2].attack_power} worth of damage! \n')
@@ -176,54 +185,62 @@ class Battlefield:
         if self.fleet.robots[2].power_level < 11:
             self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
 
-        user_choice4 = 'none'
-        while user_choice4 != 'end':
-            user_choice2 = int(input(f'Which Robot would you like to attack with? for {self.fleet.robots[0].name} type (0), for {self.fleet.robots[1]. name} type (1) or for {self.fleet.robots[2].name} type (2) \n'))
+        while True:
+            try:
+                user_choice2 = int(input(f'Which Robot would you like to attack with? for {self.fleet.robots[0].name} type (0), for {self.fleet.robots[1]. name} type (1) or for {self.fleet.robots[2].name} type (2) \n'))
+            except ValueError:
+                print ('Not a valid selection!')
+                continue
+            
             if 'Sorry' in self.fleet.robots[0].name and user_choice2 == 0:
                 print ('That robot is powered off! please select again \n')
-                user_choice4 == 'none'
+                continue
             
             elif 'low' in self.fleet.robots[0].name and user_choice2 == 0:
                   print ('That robot is low on power! please select again \n')
-                  user_choice4 == 'none'    
+                  continue   
             
             elif 'Sorry' in self.fleet.robots[1].name and user_choice2 == 1:
                   print ('That robot is powered off! please select again \n')
-                  user_choice4 == 'none'
+                  continue
 
             elif 'low' in self.fleet.robots[1].name and user_choice2 == 1:
                   print ('That robot is low on power! please select again \n')
-                  user_choice4 == 'none'
+                  continue
 
             elif 'Sorry' in self.fleet.robots[2].name and user_choice2 == 2:
                   print ('That robot is powered off! please select again \n')
-                  user_choice4 == 'none'
+                  continue
 
             elif 'low' in self.fleet.robots[2].name and user_choice2 == 2:
                   print ('That robot is powered off! please select again \n')
-                  user_choice4 == 'none'
+                  continue
 
             else: 
-                user_choice4 = 'end'
+                break
                 
         
-        user_choice5 = 'none'
-        while user_choice5 != "end":
-            rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
+        
+        while True:
+            try:
+                rob_user_choice_attack = int(input(f'Which Dinosaur would you like to attack? Type (0) for {self.herd.dinosaurs[0].name}, (1) for {self.herd.dinosaurs[1].name} or (2) for {self.herd.dinosaurs[2].name}\n'))
+            except ValueError:
+                print ('Not a valid selection!')
+                continue
             if 'Sorry' in self.herd.dinosaurs[0].name and rob_user_choice_attack == 0:
                 print('Sorry, that dinosaur is dead! Do not beat a dead dinosaur! Please select again. \n')
-                user_choice5 = 'none'
+                continue
             
             elif 'Sorry' in self.herd.dinosaurs[1].name and rob_user_choice_attack == 1:
-                 print ('That dinosaur is dead! Do not beat a dead dinosaur! Please select again. \n')
-                 user_choice5 = 'none'
+                print ('That dinosaur is dead! Do not beat a dead dinosaur! Please select again. \n')
+                continue
                  
             elif 'Sorry' in self.herd.dinosaurs[2].name and rob_user_choice_attack == 2:
-                 print('That dinosaur is dead! Do not beat a dead dinosaur! Please select again \n')
-                 user_choice5 = 'none'
+                print('That dinosaur is dead! Do not beat a dead dinosaur! Please select again \n')
+                continue
 
             else:
-                user_choice5 = 'end'
+                break
              
         
         weap_sel =int(input(f'Please select your weapon: (0) Laser Gun {self.fleet.robots[0].attack_power} (damage)   9 (accuracy)     (1) Flamethrower  {self.fleet.robots[1].attack_power} (damage)   8 (accuracy)     (2) Bazooka {self.fleet.robots[2].attack_power} (damage)   7 (accuracy)\n'))
