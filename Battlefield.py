@@ -29,10 +29,13 @@ class Battlefield:
         while (self.fleet.robots[0].health + self.fleet.robots[1].health + self.fleet.robots[2].health > 0) and (self.herd.dinosaurs[0].health + self.herd.dinosaurs[1].health + self.herd.dinosaurs[2].health > 0):  
             if (self.fleet.robots[0].power_level < 11 or self.fleet.robots[0].health <= 0) and (self.fleet.robots[1].health <=0 or self.fleet.robots[1].power_level < 11 ) and (self.fleet.robots[2].health <= 0 or self.fleet.robots[2].power_level < 11):
                 print('No players left to use! Robots forfeit!')
+                self.display_winners()
                 break
                 
             elif (self.herd.dinosaurs[0].energy < 11 or self.herd.dinosaurs[0].health <= 0) and (self.herd.dinosaurs[1].health <= 0 or self.herd.dinosaurs[1].energy < 11 ) and (self.herd.dinosaurs[2].health <= 0 or self.herd.dinosaurs[2].energy < 11):
                 print ('No players left to use! Dinosaurs forfeit!')
+                self.display_winners()
+                
                 break
 
                     
@@ -45,8 +48,10 @@ class Battlefield:
 
         else: 
             self.display_winners()
-#doing this so that if a robot is attacked with more than their health they wont go negative which affects the overall bool checking for gameover might need to move it down
     def dino_turn(self):
+    #each turn starts by checking which players are unavailable due to low health or power/energy 
+    #and prompting a reselection if needed. I realize I overcomplicated this but I kept it in; I tried a simpler method
+    #on a seperate document after some advice from instructor Cash and was able to cut this code in half essentially
         if self.herd.dinosaurs[0].energy < 11:
            self.herd.dinosaurs[0].name = (f'Barney is low on energy and cannot attack!!')
         
@@ -68,6 +73,15 @@ class Battlefield:
             self.herd.dinosaurs[2].health = 0
             self.herd.dinosaurs[2].name = (f'Sorry, Ptera is dead!')
 
+        if self.fleet.robots[0].power_level < 11:
+           self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
+        
+        if self.fleet.robots[1].power_level < 11:
+           self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
+        
+        if self.fleet.robots[2].power_level < 11:
+           self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
+        
         if self.fleet.robots[0].health <= 0:
            self.fleet.robots[0].health = 0
            self.fleet.robots[0].name = (f'Sorry, Max is powered off!')
@@ -79,16 +93,6 @@ class Battlefield:
         if  self.fleet.robots[2].health <= 0:
             self.fleet.robots[2].health = 0
             self.fleet.robots[2].name = (f'Sorry, HAL is powered off!')
-
-        if self.fleet.robots[0].power_level < 11:
-           self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
-        
-        if self.fleet.robots[1].power_level < 11:
-           self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
-        
-        if self.fleet.robots[2].power_level < 11:
-           self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
-
 
         while True:   
             try:
@@ -184,6 +188,15 @@ class Battlefield:
         print(f'{self.herd.dinosaurs[user_choice2].name} energy is now {self.herd.dinosaurs[user_choice2].energy}')
 
     def robo_turn(self):
+        if self.fleet.robots[0].power_level < 11:
+           self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
+        
+        if self.fleet.robots[1].power_level < 11:
+           self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
+        
+        if self.fleet.robots[2].power_level < 11:
+           self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
+       
         if self.fleet.robots[0].health <= 0:
            self.fleet.robots[0].health = 0
            self.fleet.robots[0].name = (f'Sorry, Max is powered off!')
@@ -195,15 +208,6 @@ class Battlefield:
         if  self.fleet.robots[2].health <= 0:
             self.fleet.robots[2].health = 0
             self.fleet.robots[2].name = (f'Sorry, HAL is powered off!')
-
-        if self.fleet.robots[0].power_level < 11:
-           self.fleet.robots[0].name = (f'Max is low on power and cannot attack!')
-        
-        if self.fleet.robots[1].power_level < 11:
-           self.fleet.robots[1].name = (f'C3PO is low on power and cannot attack!')
-        
-        if self.fleet.robots[2].power_level < 11:
-           self.fleet.robots[2].name = (f'HAL is low on power and cannot attack!')
 
         if self.herd.dinosaurs[0].energy < 11:
            self.herd.dinosaurs[0].name = (f'Barney is low on energy and cannot attack!!')
@@ -363,11 +367,11 @@ class Battlefield:
         pass
 
     def display_winners(self):
-        if self.fleet.robots[0].health + self.fleet.robots[1].health + self.fleet.robots[2].health <= 0:
+        if self.fleet.robots[0].health + self.fleet.robots[1].health + self.fleet.robots[2].health <= 0 or (self.fleet.robots[0].power_level < 11 or self.fleet.robots[0].health <= 0) and (self.fleet.robots[1].health <=0 or self.fleet.robots[1].power_level < 11 ) and (self.fleet.robots[2].health <= 0 or self.fleet.robots[2].power_level < 11):
            print('Dinosaurs rule the Earth once again!')
            print(' roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!  roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!  roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!')
            print(' roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!  roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!  roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!')
- 
+
         else:
             print('Robots are the victors! Resistance is futile! ')
             print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!! 100101001101001001110101001010010010010100101101010!!!!')
