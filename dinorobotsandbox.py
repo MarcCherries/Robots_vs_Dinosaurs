@@ -345,3 +345,89 @@ class Battlefield:
             print('Robots are the victors! Resistance is futile! ')
             print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!! 100101001101001001110101001010010010010100101101010!!!!')
             print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!! 100101001101001001110101001010010010010100101101010!!!!')
+        if self.fleet.robots[user_choice_fighter].weapon.accuracy == 9:
+            chances = random.randint(0,9)
+            if chances <= 8:
+                self.fleet.robots[user_choice_fighter].attack(self.herd.dinosaurs[user_choice_attack])
+                print(f'{self.fleet.robots[user_choice_fighter].name} attacks {self.herd.dinosaurs[user_choice_attack].name} with the {self.fleet.robots[user_choice_fighter].weapon.name} dealing {self.fleet.robots[user_choice_fighter].weapon.attack_power} damage!\n')
+                print(f'{self.herd.dinosaurs[user_choice_attack].name} health is now {self.herd.dinosaurs[user_choice_attack].health}')
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+               
+            else:
+                print('Oh no! A miss! No damage done and 10 power lost!')
+                self.fleet.robots[user_choice_fighter].power_level -= 10
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+                print (f'{self.herd.dinosaurs[user_choice_attack].name} health remains at {self.herd.dinosaurs[user_choice_attack].health}')
+        
+        elif self.fleet.robots[user_choice_fighter].weapon.accuracy == 8:
+            chances = random.randint(0,9)
+            if chances <= 7:
+                self.fleet.robots[user_choice_fighter].attack(self.herd.dinosaurs[user_choice_attack])
+                print(f'{self.fleet.robots[user_choice_fighter].name} attacks {self.herd.dinosaurs[user_choice_attack].name} with the {self.fleet.robots[user_choice_fighter].weapon.name} dealing {self.fleet.robots[user_choice_fighter].weapon.attack_power} damage!\n')
+                print(f'{self.herd.dinosaurs[user_choice_attack].name} health is now {self.herd.dinosaurs[user_choice_attack].health}')
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+            else:
+                print('Oh no! A miss! No damage done and 10 power lost!')
+                self.fleet.robots[user_choice_fighter].power_level -= 10
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+                print (f'{self.herd.dinosaurs[user_choice_attack].name} health remains at {self.herd.dinosaurs[user_choice_attack].health}')
+      
+        elif self.fleet.robots[user_choice_fighter].weapon.accuracy == 7:
+            chances = random.randint(0,9)
+            if chances <= 6:
+                self.fleet.robots[user_choice_fighter].attack(self.herd.dinosaurs[user_choice_attack])
+                print(f'{self.fleet.robots[user_choice_fighter].name} attacks {self.herd.dinosaurs[user_choice_attack].name} with the {self.fleet.robots[user_choice_fighter].weapon.name} dealing {self.fleet.robots[user_choice_fighter].weapon.attack_power} damage!\n')
+                print(f'{self.herd.dinosaurs[user_choice_attack].name} health is now {self.herd.dinosaurs[user_choice_attack].health}')
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+            else:
+                print('Oh no! A miss! No damage done and 10 power lost!')
+                self.fleet.robots[user_choice_fighter].power_level -= 10
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+                print (f'{self.herd.dinosaurs[user_choice_attack].name} health remains at {self.herd.dinosaurs[user_choice_attack].health}')
+      
+
+
+
+
+
+
+        if self.fleet.robots[user_choice_fighter].weapon.accuracy == 9:
+            chances = random.randint(0,9)
+            if chances <= 8:
+                self.fleet.robots[user_choice_fighter].attack(self.herd.dinosaurs[user_choice_attack])
+                print(f'{self.fleet.robots[user_choice_fighter].name} attacks {self.herd.dinosaurs[user_choice_attack].name} with the {self.fleet.robots[user_choice_fighter].weapon.name} dealing {self.fleet.robots[user_choice_fighter].weapon.attack_power} damage!\n')
+                print(f'{self.herd.dinosaurs[user_choice_attack].name} health is now {self.herd.dinosaurs[user_choice_attack].health}')
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+               
+            else:
+                print('Oh no! A miss! No damage done and 10 power lost!')
+                self.fleet.robots[user_choice_fighter].power_level -= 10
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+                print (f'{self.herd.dinosaurs[user_choice_attack].name} health remains at {self.herd.dinosaurs[user_choice_attack].health}')
+        
+        elif self.fleet.robots[user_choice_fighter].weapon.accuracy == 8:
+            chances = random.randint(0,9)
+            if chances <= 7:
+                self.fleet.robots[user_choice_fighter].attack(self.herd.dinosaurs[user_choice_attack])
+                print(f'{self.fleet.robots[user_choice_fighter].name} attacks {self.herd.dinosaurs[user_choice_attack].name} with the {self.fleet.robots[user_choice_fighter].weapon.name} dealing {self.fleet.robots[user_choice_fighter].weapon.attack_power} damage!\n')
+                print(f'{self.herd.dinosaurs[user_choice_attack].name} health is now {self.herd.dinosaurs[user_choice_attack].health}')
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+            else:
+                print('Oh no! A miss! No damage done and 10 power lost!')
+                self.fleet.robots[user_choice_fighter].power_level -= 10
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+                print (f'{self.herd.dinosaurs[user_choice_attack].name} health remains at {self.herd.dinosaurs[user_choice_attack].health}')
+      
+        elif self.fleet.robots[user_choice_fighter].weapon.accuracy == 7:
+            chances = random.randint(0,9)
+            if chances <= 6:
+                self.fleet.robots[user_choice_fighter].attack(self.herd.dinosaurs[user_choice_attack])
+                print(f'{self.fleet.robots[user_choice_fighter].name} attacks {self.herd.dinosaurs[user_choice_attack].name} with the {self.fleet.robots[user_choice_fighter].weapon.name} dealing {self.fleet.robots[user_choice_fighter].weapon.attack_power} damage!\n')
+                print(f'{self.herd.dinosaurs[user_choice_attack].name} health is now {self.herd.dinosaurs[user_choice_attack].health}')
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+            else:
+                print('Oh no! A miss! No damage done and 10 power lost!')
+                self.fleet.robots[user_choice_fighter].power_level -= 10
+                print(f'{self.fleet.robots[user_choice_fighter].name} power level is now {self.fleet.robots[user_choice_fighter].power_level}')
+                print (f'{self.herd.dinosaurs[user_choice_attack].name} health remains at {self.herd.dinosaurs[user_choice_attack].health}')
+      
