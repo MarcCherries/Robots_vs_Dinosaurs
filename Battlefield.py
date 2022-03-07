@@ -305,7 +305,7 @@ class Battlefield:
                 print('Dinosaurs rule the Earth once again! Dinosaurs rule the Earth once again! Dinosaurs rule the Earth once again!  ')
             for i in range (5):
                 print(' roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!  roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!  roooooooooooaaaaaaaaaaaaaaaarrrrrrrrr!!!!!!')
-            print('Thank you for playing! Here are the final stats!\n')
+            print('THANK YOU FOR PLAYING ROBOTS VS DINOSAURS! HERE ARE THE FINAL STATS:\n')
             self.show_dino_opponent_options('fighters')
             self.show_robo_opponent_options('opponents')
             print('*******Powered by Radon Technologies (c) 2022  NO Dinosaurs and MANY Robots were harmed in the making of this game.  Powered by Radon Technologies (c) 2022********')
@@ -315,8 +315,8 @@ class Battlefield:
             for i in range (50):
                 print('Robots are the victors! Resistance is futile! Robots are the victors! Resistance is futile! Robots are the victors! Resistance is futile! ')
             for i in range (5):
-                 print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!')
-            print('Thank you for playing! Here are the final stats!\n')
+                print ('100101001101001001110101001010010010010100101101010!!!!100101010010100101010010001001001!!!10000100010001000100101001001!!!!!01001001000100110100100010010010001!!!!')
+            print('THANK YOU FOR PLAYING ROBOTS VS DINOSAURS! HERE ARE THE FINAL STATS:\n')
             self.show_robo_opponent_options('fighters')
             self.show_dino_opponent_options('opponents')
             print('*******Powered by Radon Technologies (c) 2022  NO Dinosaurs and MANY Robots were harmed in the making of this game.  Powered by Radon Technologies (c)*********')
